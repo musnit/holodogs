@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using HoloToolkit.Unity;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.VR.WSA.Input;
 
 public class GazeGestureManager : MonoBehaviour
@@ -25,19 +27,23 @@ public class GazeGestureManager : MonoBehaviour
 
         recognizer.TappedEvent += (source, tapCount, ray) =>
         {
-            // Send an OnSelect message to the focused object and its ancestors.
-            if (FocusedObject != null && FocusedObject.GetComponent<ChangeCursor>())
+
+            if (FocusedObject != null)
             {
-                FocusedObject.SendMessage("OnSelect", activePiecePrefab);
+                FocusedObject.SendMessage("OnSelect");
             }
-            else if (activePiecePrefab)
+            if (activePiecePrefab != null && //piece is selected and
+            (FocusedObject.GetComponent<SurfacePlane>() == null || //not a plane..or
+            (FocusedObject.GetComponent<SurfacePlane>() != null && FocusedObject.GetComponent<SurfacePlane>().isSpawned() == true)) && //is a spawned place
+            FocusedObject.GetComponent<ChangeCursor>() == null //not a piece selector
+            )
             {
                 GameObject newObject = GameObject.Instantiate(activePiecePrefab);
                 newObject.transform.position = cursor.transform.position;
-            }
-            else if (FocusedObject != null)
-            {
-                FocusedObject.SendMessage("OnSelect");
+                if (newObject.GetComponent<HotdogController>() != null)
+                {
+                    newObject.GetComponent<HotdogController>().target = cursor.transform;
+                }
             }
         };
         recognizer.StartCapturingGestures();
