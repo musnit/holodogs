@@ -2,52 +2,37 @@
 
 public class ChangeCursor : MonoBehaviour
 {
-    bool placing = false;
     public GameObject piecePrefab;
+    public GameObject dumbPrefab;
+    public GameObject hoverSignalPrefab;
+
+    private GameObject hoverSignal;
+
     // Called by GazeGestureManager when the user performs a Select gesture
     void OnSelect()
     {
-        // On each Select gesture, toggle whether the user is in placing mode.
-        //placing = !placing;
-        CursorChanger.Instance.changeCursor(piecePrefab);
-        // If the user is in placing mode, display the spatial mapping mesh.
-       /* if (placing)
+        CursorChanger.Instance.changeCursor(piecePrefab, dumbPrefab);
+    }
+
+    void OnHover()
+    {
+        if (hoverSignal != null)
         {
-            SpatialMapping.Instance.DrawVisualMeshes = true;
+            GameObject.Destroy(hoverSignal);
         }
-        // If the user is not in placing mode, hide the spatial mapping mesh.
-        else
-        {
-            SpatialMapping.Instance.DrawVisualMeshes = false;
-        }*/
+        hoverSignal = GameObject.Instantiate(hoverSignalPrefab);
+        hoverSignal.transform.parent = transform;
+        hoverSignal.transform.localPosition = new Vector3(0, 0.01f, 0);
+    }
+
+    void OffHover()
+    {
+        GameObject.Destroy(hoverSignal);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the user is in placing mode,
-        // update the placement to match the user's gaze.
 
-        if (placing)
-        {
-            // Do a raycast into the world that will only hit the Spatial Mapping mesh.
-            var headPosition = Camera.main.transform.position;
-            var gazeDirection = Camera.main.transform.forward;
-
-            RaycastHit hitInfo;
-            if (Physics.Raycast(headPosition, gazeDirection, out hitInfo,
-                30.0f, SpatialMapping.PhysicsRaycastMask))
-            {
-                // Move this object's parent object to
-                // where the raycast hit the Spatial Mapping mesh.
-                this.transform.parent.position = hitInfo.point;
-
-                // Rotate this object's parent object to face the user.
-                Quaternion toQuat = Camera.main.transform.localRotation;
-                toQuat.x = 0;
-                toQuat.z = 0;
-                this.transform.parent.rotation = toQuat;
-            }
-        }
     }
 }

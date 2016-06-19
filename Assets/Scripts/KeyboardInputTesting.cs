@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class KeyboardInputTesting : MonoBehaviour {
 
     public GameObject ref1;
+    public GameObject cursor;
 
     [HideInInspector]
     public GameObject activePiecePrefab;
@@ -18,8 +20,9 @@ public class KeyboardInputTesting : MonoBehaviour {
     {
         if (Input.GetKeyDown("space") && ref1)
         {
+            Dictionary<string, GameObject> paramaters = new Dictionary<string, GameObject>();
             print(ref1.name);
-            ref1.SendMessage("OnSelect", activePiecePrefab);
+            ref1.SendMessage("OnSelect");
         }
         if (Input.GetKeyDown(KeyCode.Return) && ref1)
         {

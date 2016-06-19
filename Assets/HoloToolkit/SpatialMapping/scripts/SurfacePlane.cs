@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace HoloToolkit.Unity
@@ -114,6 +115,11 @@ namespace HoloToolkit.Unity
             }
         }
 
+        public bool isSpawned()
+        {
+            return spawnedBoard != null;
+        }
+
         /// <summary>
         /// Updates the SurfacePlane object to have the same configuration of the BoundingPlane object.
         /// Determine what type of plane the SurfacePlane aligns to.
@@ -227,20 +233,24 @@ namespace HoloToolkit.Unity
 
         void OnSelect()
         {
-            Debug.Log("asd: " + menuSpawned);
+            if (this.PlaneType != PlaneTypes.Table)
+                return;
             if (!menuSpawned)
             {
                 menuSpawned = true;
                 SpawnMenu();
             }
-            else 
+            else if (!isSpawned())
                 SpawnBoard();
+
         }
 
         void OnHover()
         {
-            activeMaterial = gameObject.GetComponent<Renderer>().material;
-            gameObject.GetComponent<Renderer>().material = HoverMaterial;
+            if (!menuSpawned) {
+                activeMaterial = gameObject.GetComponent<Renderer>().material;
+                gameObject.GetComponent<Renderer>().material = HoverMaterial;
+            }
         }
 
         void OffHover()

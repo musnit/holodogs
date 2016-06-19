@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class CursorChanger : MonoBehaviour {
 
     public GameObject gestureManager;
     public GameObject keybManager;
     public GameObject cursor;
+    private GameObject currentCursor;
+
     public static CursorChanger Instance { get; private set; }
 
     // Use this for initialization
@@ -13,15 +16,19 @@ public class CursorChanger : MonoBehaviour {
         Instance = this;
     }
 
-    public void changeCursor(GameObject piecePrefab)
+    public void changeCursor(GameObject piecePrefab, GameObject dumbPrefab)
     {
-        GameObject cursorPiece = GameObject.Instantiate(piecePrefab);
-        cursorPiece.transform.parent = cursor.transform;
-        cursorPiece.transform.localPosition = Vector3.zero;
+        if (currentCursor != null)
+        {
+            GameObject.Destroy(currentCursor);
+        }
+        currentCursor = GameObject.Instantiate(dumbPrefab);
+        currentCursor.transform.parent = cursor.transform;
+        currentCursor.transform.localPosition = Vector3.zero;
         gestureManager.GetComponent<GazeGestureManager>().activePiecePrefab = piecePrefab;
         keybManager.GetComponent<KeyboardInputTesting>().activePiecePrefab = piecePrefab;
-        cursorPiece.SetActive(false);
     }
+
 
     // Update is called once per frame
     void Update () {
