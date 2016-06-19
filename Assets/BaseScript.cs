@@ -12,4 +12,9 @@ public class BaseScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnFiredAt()
+    {
+        Debug.Log("Ouch");
+    }
 }

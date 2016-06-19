@@ -241,7 +241,10 @@ namespace HoloToolkit.Unity
                 SpawnMenu();
             }
             else if (!isSpawned())
+            {
                 SpawnBoard();
+                GameObject.Destroy(gameObject);
+            }
 
         }
 
