@@ -403,6 +403,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010299490506}
+  - 114: {fileID: 114000010111496310}
+  - 135: {fileID: 135000010915355754}
+  - 143: {fileID: 143000013172280914}
   m_Layer: 0
   m_Name: FryArmy
   m_TagString: Untagged
@@ -540,7 +543,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013064723082}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.474, y: 0, z: 0.1544}
+  m_LocalPosition: {x: -12.100837, y: -14.473, z: 8.697904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013834688604}
@@ -1479,3 +1482,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012143213752}
   m_Mesh: {fileID: 4300000, guid: 93f78e540ea41f04fb3f80dced41fdaf, type: 3}
+--- !u!114 &114000010111496310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013064723082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3644a3211bec3314e972dcb7b50aab9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 0.07
+  target: {fileID: 0}
+  weaponRange: 0.3
+--- !u!135 &135000010915355754
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013064723082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &143000013172280914
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013064723082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.05
+  m_Radius: 0.01
+  m_SlopeLimit: 45
+  m_StepOffset: 0.006
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.02, z: 0}

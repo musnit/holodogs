@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Fighter : Destructable
 {
-    private static float movespeed = 3f;
+    public float movespeed = 3f;
     private static Vector3 gravity = Physics.gravity;
 
     public GameObject target;
@@ -11,7 +11,7 @@ public class Fighter : Destructable
     private CharacterController controller;
     private GameObject currentTarget;
     private float lastShotFired = 0f;
-    private float weaponRange = 3f;
+    public float weaponRange = 3f;
     private float reloadTime = 0.5f;
     private float damage = 10;
 
@@ -19,6 +19,8 @@ public class Fighter : Destructable
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        if (target == null)
+            target = FindClosestBase();
         currentTarget = target;
     }
 
@@ -27,7 +29,6 @@ public class Fighter : Destructable
     {
         if (currentTarget == null && currentTarget != target)
         {
-            Debug.Log(name + ": 8-D");
             currentTarget = target;
         }
 
@@ -61,6 +62,24 @@ public class Fighter : Destructable
             }
         }
         controller.Move(movement * Time.deltaTime);
+    }
+
+    GameObject FindClosestBase()
+    {
+        GameObject[] boards = GameObject.FindGameObjectsWithTag("Base");
+        GameObject closestBaseTransform = null;
+        float minDist = Mathf.Infinity;
+        Vector3 currentPos = transform.position;
+        foreach (GameObject board in boards)
+        {
+            float dist = Vector3.Distance(board.transform.position, currentPos);
+            if (dist < minDist)
+            {
+                closestBaseTransform = board;
+                minDist = dist;
+            }
+        }
+        return closestBaseTransform;
     }
 
     void OnTriggerEnter(Collider contact)
