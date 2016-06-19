@@ -116,6 +116,7 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
 
             //Vector3 finalPosition = AdjustPositionWithSpatialMap(position, surfaceType);
             GameObject spaceObject = Instantiate(item, position, rotation) as GameObject;
+            spaceObject.transform.Rotate(90, 0, 0);
             spaceObject.transform.parent = gameObject.transform;
         }
     }    

@@ -23,6 +23,14 @@ namespace HoloToolkit.Unity
     /// </summary>
     public class SurfacePlane : MonoBehaviour
     {
+
+        public GameObject gameBoardPrefab;
+        public GameObject menuPrefab;
+
+        private bool menuSpawned = false;
+        private GameObject spawnedMenu;
+        private GameObject spawnedBoard;
+
         [Tooltip("Thickness to make each plane.")]
         [Range(0.0f, 1.0f)]
         public float PlaneThickness = 0.01f;
@@ -54,8 +62,13 @@ namespace HoloToolkit.Unity
         [Tooltip("Material to use when rendering planes of the unknown type.")]
         public Material UnknownMaterial;
 
+        [Tooltip("Material to use when hovering on this.")]
+        public Material HoverMaterial;
+
         [Tooltip("Type of plane that the object has been classified as.")]
         public PlaneTypes PlaneType = PlaneTypes.Unknown;
+
+        public Material activeMaterial;
 
         /// <summary>
         /// The BoundedPlane associated with the SurfacePlane object.
@@ -210,6 +223,44 @@ namespace HoloToolkit.Unity
                     }
                     break;
             }
+        }
+
+        void OnSelect()
+        {
+            Debug.Log("asd: " + menuSpawned);
+            if (!menuSpawned)
+            {
+                menuSpawned = true;
+                SpawnMenu();
+            }
+            else 
+                SpawnBoard();
+        }
+
+        void OnHover()
+        {
+            activeMaterial = gameObject.GetComponent<Renderer>().material;
+            gameObject.GetComponent<Renderer>().material = HoverMaterial;
+        }
+
+        void OffHover()
+        {
+            gameObject.GetComponent<Renderer>().material = activeMaterial;
+        }
+
+        public void SpawnBoard()
+        {
+            GameObject.Destroy(spawnedMenu);
+            Vector3 extents = plane.Bounds.Extents * 2;
+            GameObject spawnedBoard = (GameObject)Instantiate(gameBoardPrefab);
+            spawnedBoard.transform.localPosition = new Vector3(transform.position.x, transform.position.y + 0.008f, transform.position.z);
+        }
+
+        public void SpawnMenu()
+        {
+            Vector3 extents = plane.Bounds.Extents * 2;
+            spawnedMenu = (GameObject)Instantiate(menuPrefab);
+            spawnedMenu.transform.localPosition = new Vector3(transform.position.x, transform.position.y + 0.008f, transform.position.z);
         }
     }
 }

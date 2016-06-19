@@ -42,12 +42,23 @@ public class GazeGestureManager : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
         {
-            // If the raycast hit a hologram, use that as the focused object.
-            FocusedObject = hitInfo.collider.gameObject;
+            if (hitInfo.collider.gameObject.GetComponent<HoloToolkit.Unity.SurfacePlane>())
+            {
+                // If the raycast hit a plane, use that as the focused object.
+                FocusedObject = hitInfo.collider.gameObject;
+                FocusedObject.SendMessageUpwards("OnHover", null, SendMessageOptions.DontRequireReceiver);
+            }
+            else if (FocusedObject)
+            {
+                // If raycast did hit walls.
+                FocusedObject.SendMessageUpwards("OffHover", null, SendMessageOptions.DontRequireReceiver);
+                FocusedObject = null;
+            }
         }
         else
         {
-            // If the raycast did not hit a hologram, clear the focused object.
+            // If the raycast did not hit anything, clear the focused object.
+            FocusedObject.SendMessageUpwards("OffHover", null, SendMessageOptions.DontRequireReceiver);
             FocusedObject = null;
         }
 

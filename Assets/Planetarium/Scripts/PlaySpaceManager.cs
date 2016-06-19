@@ -58,6 +58,11 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
 
             // Check to see if enough scanning time has passed
             // since starting the observer.
+
+#if UNITY_EDITOR
+            scanTime = 1;
+#endif
+
             if (limitScanningByTime && ((Time.time - SpatialMappingManager.Instance.StartTime) < scanTime))
             {
                 // If we have a limited scanning time, then we should wait until
@@ -136,7 +141,7 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
             // and use horizontal/vertical planes to set their starting positions.
             // Call SpaceCollectionManager.Instance.GenerateItemsInWorld().
             // Pass in the lists of horizontal and vertical planes that we found earlier.
-            SpaceCollectionManager.Instance.GenerateItemsInWorld(horizontal, vertical);
+            //SpaceCollectionManager.Instance.GenerateItemsInWorld(horizontal, vertical);
         }
         else
         {
