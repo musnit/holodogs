@@ -5,6 +5,11 @@ public class GazeGestureManager : MonoBehaviour
 {
     public static GazeGestureManager Instance { get; private set; }
 
+    [HideInInspector]
+    public GameObject activePiecePrefab;
+
+    public GameObject cursor;
+
     // Represents the hologram that is currently being gazed at.
     public GameObject FocusedObject { get; private set; }
 
@@ -17,12 +22,22 @@ public class GazeGestureManager : MonoBehaviour
 
         // Set up a GestureRecognizer to detect Select gestures.
         recognizer = new GestureRecognizer();
+
         recognizer.TappedEvent += (source, tapCount, ray) =>
         {
             // Send an OnSelect message to the focused object and its ancestors.
-            if (FocusedObject != null)
+            if (FocusedObject != null && FocusedObject.GetComponent<ChangeCursor>())
             {
-                FocusedObject.SendMessageUpwards("OnSelect");
+                FocusedObject.SendMessage("OnSelect", activePiecePrefab);
+            }
+            else if (activePiecePrefab)
+            {
+                GameObject newObject = GameObject.Instantiate(activePiecePrefab);
+                newObject.transform.position = cursor.transform.position;
+            }
+            else if (FocusedObject != null)
+            {
+                FocusedObject.SendMessage("OnSelect");
             }
         };
         recognizer.StartCapturingGestures();

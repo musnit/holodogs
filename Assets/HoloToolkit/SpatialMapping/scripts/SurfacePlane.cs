@@ -257,7 +257,7 @@ namespace HoloToolkit.Unity
             spawnedBoard.transform.rotation = transform.rotation;
             spawnedBoard.transform.Rotate(270, 0, 0);
             spawnedBoard.transform.localPosition = new Vector3(transform.position.x, transform.position.y + 0.008f, transform.position.z);
-            spawnedBoard.transform.localScale = new Vector3(transform.localScale.y, 1, transform.localScale.x);
+            spawnedBoard.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.y);
         }
 
         public void SpawnMenu()

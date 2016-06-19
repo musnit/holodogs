@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class WorldCursor : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
+
+    [HideInInspector]
+    public GameObject piecePrefab;
 
     // Use this for initialization
     void Start()
@@ -38,4 +42,5 @@ public class WorldCursor : MonoBehaviour
             meshRenderer.enabled = false;
         }
     }
+
 }

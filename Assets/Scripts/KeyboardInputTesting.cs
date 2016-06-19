@@ -5,8 +5,11 @@ public class KeyboardInputTesting : MonoBehaviour {
 
     public GameObject ref1;
 
-	// Use this for initialization
-	void Start () {
+    [HideInInspector]
+    public GameObject activePiecePrefab;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 
@@ -16,7 +19,7 @@ public class KeyboardInputTesting : MonoBehaviour {
         if (Input.GetKeyDown("space") && ref1)
         {
             print(ref1.name);
-            ref1.SendMessageUpwards("OnSelect");
+            ref1.SendMessage("OnSelect", activePiecePrefab);
         }
         if (Input.GetKeyDown(KeyCode.Return) && ref1)
         {
