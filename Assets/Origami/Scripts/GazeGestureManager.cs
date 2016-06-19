@@ -6,7 +6,7 @@ public class GazeGestureManager : MonoBehaviour
     public static GazeGestureManager Instance { get; private set; }
 
     [HideInInspector]
-    public GameObject activePiecePrefab;
+    public GameObject activePiecePrefab = null;
 
     public GameObject cursor;
 
@@ -57,24 +57,24 @@ public class GazeGestureManager : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
         {
-            if (hitInfo.collider.gameObject.GetComponent<HoloToolkit.Unity.SurfacePlane>())
+            if (FocusedObject != hitInfo.collider.gameObject)
             {
-                // If the raycast hit a plane, use that as the focused object.
+                if (FocusedObject != null)
+                {
+                    FocusedObject.SendMessageUpwards("OffHover", null, SendMessageOptions.DontRequireReceiver);
+                }
                 FocusedObject = hitInfo.collider.gameObject;
                 FocusedObject.SendMessageUpwards("OnHover", null, SendMessageOptions.DontRequireReceiver);
-            }
-            else if (FocusedObject)
-            {
-                // If raycast did hit walls.
-                FocusedObject.SendMessageUpwards("OffHover", null, SendMessageOptions.DontRequireReceiver);
-                FocusedObject = null;
             }
         }
         else
         {
             // If the raycast did not hit anything, clear the focused object.
-            FocusedObject.SendMessageUpwards("OffHover", null, SendMessageOptions.DontRequireReceiver);
-            FocusedObject = null;
+            if (FocusedObject != null)
+            {
+                FocusedObject.SendMessageUpwards("OffHover", null, SendMessageOptions.DontRequireReceiver);
+                FocusedObject = null;
+            }
         }
 
         // If the focused object changed this frame,
