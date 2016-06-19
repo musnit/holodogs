@@ -20,6 +20,7 @@ public class CursorChanger : MonoBehaviour {
         cursorPiece.transform.localPosition = Vector3.zero;
         gestureManager.GetComponent<GazeGestureManager>().activePiecePrefab = piecePrefab;
         keybManager.GetComponent<KeyboardInputTesting>().activePiecePrefab = piecePrefab;
+        cursorPiece.SetActive(false);
     }
 
     // Update is called once per frame

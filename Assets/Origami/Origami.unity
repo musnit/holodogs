@@ -144,6 +144,7 @@ GameObject:
   - 114: {fileID: 416279445}
   - 82: {fileID: 416279446}
   - 114: {fileID: 416279447}
+  - 114: {fileID: 416279448}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activePiecePrefab: {fileID: 0}
-  cursor: {fileID: 0}
+  cursor: {fileID: 2035436355}
 --- !u!114 &416279445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +276,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ref1: {fileID: 0}
   activePiecePrefab: {fileID: 0}
+--- !u!114 &416279448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416279442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9c92933d24a9a4cbc1efa1073cb60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gestureManager: {fileID: 416279442}
+  keybManager: {fileID: 416279442}
+  cursor: {fileID: 2035436355}
 --- !u!1001 &461624886
 Prefab:
   m_ObjectHideFlags: 0
