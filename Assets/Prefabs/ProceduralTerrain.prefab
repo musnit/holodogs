@@ -141,6 +141,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010920988022
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013274778878}
+  - 114: {fileID: 114000011226004748}
+  m_Layer: 0
+  m_Name: Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011051400844
 GameObject:
   m_ObjectHideFlags: 1
@@ -722,7 +738,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010230349086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9255085, y: -12.314477, z: 10.394105}
+  m_LocalPosition: {x: -9.343365, y: -8.737756, z: 2.9196458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013527299514}
@@ -944,6 +960,7 @@ Transform:
   - {fileID: 4000010944172006}
   - {fileID: 4000012670607020}
   - {fileID: 4000011129971110}
+  - {fileID: 4000013274778878}
   m_Father: {fileID: 4000010741198442}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1106,6 +1123,19 @@ Transform:
   m_Father: {fileID: 4000011572970878}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!4 &4000013274778878
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010920988022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0847, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000012242206296}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013498510004
 Transform:
   m_ObjectHideFlags: 1
@@ -1743,6 +1773,21 @@ MonoBehaviour:
   objectPrefab: {fileID: 1000013730069628, guid: bba208535d08ed94d9d09acd24fc04e2,
     type: 2}
   scaleVector: {x: 0.001849592, y: 0.001849592, z: 0.001849592}
+  spawnedObject: {fileID: 0}
+--- !u!114 &114000011226004748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010920988022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71d5945cc5d5cc4183a80a9b69fecca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 1000010870481948, guid: 8b8559e5a29c4a442bb2343a652acad3,
+    type: 2}
+  scaleVector: {x: 0.1, y: 0.1, z: 0.1}
   spawnedObject: {fileID: 0}
 --- !u!114 &114000011445493866
 MonoBehaviour:
