@@ -14,6 +14,7 @@ public class SingleSpawner : MonoBehaviour {
         spawnedObject = (GameObject)Instantiate(objectPrefab);
         spawnedObject.transform.position = transform.position;
         spawnedObject.transform.localScale = scaleVector;
+        spawnedObject.transform.parent = transform.parent.parent;
     }
 
     // Update is called once per frame

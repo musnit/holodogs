@@ -253,7 +253,11 @@ namespace HoloToolkit.Unity
             GameObject.Destroy(spawnedMenu);
             Vector3 extents = plane.Bounds.Extents * 2;
             GameObject spawnedBoard = (GameObject)Instantiate(gameBoardPrefab);
+            spawnedBoard.transform.LookAt(transform);
+            spawnedBoard.transform.rotation = transform.rotation;
+            spawnedBoard.transform.Rotate(270, 0, 0);
             spawnedBoard.transform.localPosition = new Vector3(transform.position.x, transform.position.y + 0.008f, transform.position.z);
+            spawnedBoard.transform.localScale = new Vector3(transform.localScale.y, 1, transform.localScale.x);
         }
 
         public void SpawnMenu()

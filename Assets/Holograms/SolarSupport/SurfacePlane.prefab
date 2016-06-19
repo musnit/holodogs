@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29c05be38579034196d7b7692e52bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBoardPrefab: {fileID: 1000011836009910, guid: 4bb0bccae750bc74d86145e3fbd5cdd5,
+  gameBoardPrefab: {fileID: 1000010230349086, guid: 8d620babb683f964dae9f26c01e1f3de,
     type: 2}
   menuPrefab: {fileID: 1000014254478404, guid: 3d590932d9f44d64a9b608b727f3e5f5, type: 2}
   PlaneThickness: 0.01
