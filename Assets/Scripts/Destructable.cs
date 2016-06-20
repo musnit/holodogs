@@ -17,7 +17,6 @@ public class Destructable : MonoBehaviour {
     void OnFiredAt(float damage)
     {
         health -= damage;
-        Debug.Log(name + ": Took " + damage + " damage, health now at " + health);
         if (health <= 0)
         {
             Debug.Log(name + ": X-(");

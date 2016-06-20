@@ -13,8 +13,4 @@ public class BaseScript : MonoBehaviour {
 	
 	}
 
-    void OnFiredAt()
-    {
-        Debug.Log("Ouch");
-    }
 }

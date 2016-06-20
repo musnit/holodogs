@@ -27,6 +27,9 @@ public class Fighter : Destructable
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+            target = FindClosestBase();
+
         if (currentTarget == null && currentTarget != target)
         {
             currentTarget = target;
@@ -57,7 +60,6 @@ public class Fighter : Destructable
             if ((now - lastShotFired) > reloadTime)
             {
                 lastShotFired = now;
-                Debug.Log(name + ": Firing at " + currentTarget.name);
                 currentTarget.SendMessage("OnFiredAt", damage);
             }
         }
